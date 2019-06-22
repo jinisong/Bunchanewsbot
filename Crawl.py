@@ -23,3 +23,5 @@ data = requests.get('https://www.dealstreetasia.com/?s=vietnam')         # get �
 soup = BeautifulSoup(data.text, 'html.parser')
 
 url=soup.find('h4').a.get['href']
+
+#Dealst.asia 검색어 vietnam 크롤링
