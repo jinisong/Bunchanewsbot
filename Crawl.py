@@ -17,3 +17,9 @@ image1 = soup.find("meta",  property="og:image")
 print(title1['content'])
 print(desc1['content'])
 print(image1['content'])
+
+#Dealst.asia 검색어 vietnam 크롤링
+data = requests.get('https://www.dealstreetasia.com/?s=vietnam')         # get 요청으로 html을 가져와라
+soup = BeautifulSoup(data.text, 'html.parser')
+
+url=soup.find('h4').a.get['href']
