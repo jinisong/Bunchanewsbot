@@ -1,27 +1,27 @@
 import requests
 from bs4 import BeautifulSoup
 
-#vnexpress에서 startup으로 검색한 가장 최근 기사의 메타데이터를 가져오는 코드_
+#vnexpress에서 startup으로 검색한 가장 최근 기사의 url를 가져오는 코드_
 data = requests.get('https://e.vnexpress.net/search?q=startup&media_type=all&cate_code=&search_f=title,lead&date_format=all&latest=on')         # get 요청으로 html을 가져와라
 soup = BeautifulSoup(data.text, 'html.parser')
 
-url=soup.find('h4').a.get('href')
+url1=soup.find('h4').a.get('href')
+print(url1)
 
-data = requests.get(url)         # get 요청으로 html을 가져와라
-soup = BeautifulSoup(data.text, 'html.parser')    # 가져온 html을 BeautifulSoup 라이브러리로 예쁘게 만들자
-
-title1 = soup.find("meta",  property="og:title")
-desc1 = soup.find("meta",  property="og:description")
-image1 = soup.find("meta",  property="og:image")
-
-print(title1['content'])
-print(desc1['content'])
-print(image1['content'])
-
-#Dealst.asia 검색어 vietnam 크롤링
+#Deal st.asia 검색어 vietnam 크롤링
 data = requests.get('https://www.dealstreetasia.com/?s=vietnam')         # get 요청으로 html을 가져와라
 soup = BeautifulSoup(data.text, 'html.parser')
 
-url=soup.find('h4').a.get['href']
+article=soup.find('div',{'class':"col main-list-text-col"})
+link = article.find_all('a')
+url2=link[2].get('href')
+print(url2)
 
-#Dealst.asia 검색어 vietnam 크롤링
+#Deal st.asia 검색어 vietnam korea 크롤링
+data = requests.get('https://www.dealstreetasia.com/?s=vietnam+korea')         # get 요청으로 html을 가져와라
+soup = BeautifulSoup(data.text, 'html.parser')
+
+article=soup.find('div',{'class':"col main-list-text-col"})
+link = article.find_all('a')
+url3=link[2].get('href')
+print(url3)
