@@ -41,13 +41,12 @@ def crawl():
     link = article.find_all('a')
     url=link[2].get('href')
     db.article.insert_one({'url': url})
+#TC 검색어 vietnam 크롤링
+    data = requests.get('https://techcrunch.com/search/vietnam')         # get 요청으로 html을 가져와라
+    soup = BeautifulSoup(data.text, 'html.parser')
+    url = soup.find('a',{'class':{'post-block__title__link'}}).get('href')
+    db.article.insert_one({'url': url})
     return
-
-
-article=soup.find('div',{'class':"col main-list-text-col"})
-link = article.find_all('a')
-url=link[2].get('href')
-db.article.insert_one({'url': url})
 
 
 def morningsend():
