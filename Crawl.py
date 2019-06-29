@@ -8,8 +8,6 @@ from pymongo import MongoClient
 client = MongoClient('localhost',27017)
 db = client.dbsparta
 
-#이전에 저장된 DB 삭제
-db.article.drop()
 
 #분짜뉴스봇과 연결하기
 my_token = '729010308:AAGj0mPUkmRaf19gr3LLP9Wj8tYGbn69_w0'
@@ -51,6 +49,7 @@ def crawl():
 
 #말하면 봇이 쏩니다.
 def get_message(bot, update):
+    db.article.drop()
     crawl()
     update.message.reply_text("네. 쏩니다 빵야빵야")
     articles = db.article.find({})
