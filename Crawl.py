@@ -49,12 +49,6 @@ def crawl():
     return
 
 
-def morningsend():
-    articles = db.article.find({})
-    for article in articles:
-        news_bot.sendMessage(text=article['url'])
-
-
 #말하면 봇이 쏩니다.
 def get_message(bot, update):
     crawl()
@@ -72,7 +66,3 @@ updater.start_polling(timeout=3, clean=True)
 updater.idle()
 
 
-def morningsend():
-    articles = db.article.find({})
-    for article in articles:
-        news_bot.sendMessage(text=article['url'])
